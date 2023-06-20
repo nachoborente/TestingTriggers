@@ -10,6 +10,7 @@ jobs:
     steps:
       - run: |
           echo Comment created in a pull request
+          echo "${{ github.base_ref }}"
   PR_comment_context:
     name: github context
     runs-on: ubuntu-latest
@@ -18,3 +19,4 @@ jobs:
         env:
           GITHUB_CONTEXT: ${{ toJson(github) }}
         run: echo '$GITHUB_CONTEXT'
+      - run: echo "${{ github.base_ref }}"
