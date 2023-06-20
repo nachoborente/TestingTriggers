@@ -1,0 +1,22 @@
+name: Testing PullRequest Triggers
+on: 
+  issue_comment:
+    types: created
+jobs:
+  pr_commented:
+  name: PR comment
+  if: ${{ github.event.issue.pull_request }} && ${{ github.base_ref == 'main')
+  runs-on: ubuntu-latest
+  steps:
+    - run: |
+        echo Comment created in a pull request
+ 
+  PR comment context:
+  name: github context
+  runs-on: ubuntu-latest
+  steps:
+    - run: |
+        echo ${{ github.event }}
+        echo "#####fin event####"
+        echo ${{ github }}
+        
