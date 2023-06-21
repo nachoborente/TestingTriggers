@@ -6,7 +6,7 @@ on:
     branches:
       - develop
       - release
-      - main
+      #- main
 jobs:
   PROD_deploy:
     name: DeployToProd
