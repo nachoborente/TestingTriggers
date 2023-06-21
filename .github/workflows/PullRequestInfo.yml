@@ -1,16 +1,22 @@
 name: Testing PullRequest Triggers
+run-name:  ${{ github.head_ref }} deploy ${{ github.base_ref }} by @${{ github.actor }}
 on: 
   pull_request:
     types: opened
+    branches:
+      - develop
+      - release
+      - main
 jobs:
-#  pr_info:
-#    name: PR comment
-#    if: ${{ github.event.issue.pull_request }} && ${{ github.base_ref }} == 'main'
-#    runs-on: ubuntu-latest
-#    steps:
-#      - run: |
-#          echo Comment created in a pull request
-#          echo "${{ github.base_ref }}"
+  PROD_deploy:
+    name: DeployToProd
+    if: ${{ github.base_ref }} == 'main'
+    runs-on: ubuntu-latest
+    steps:
+      - run: |
+          echo 'PR description: ${{ github.event.pull_request.body }}'
+          echo 'deploy to production: ${{ github.base_ref }} branch'
+          echo "destination branch: ${{ github.head_ref }}"
   dump_contexts_to_log:
     runs-on: ubuntu-latest
     steps:
