@@ -1,13 +1,9 @@
 name: Testing PullRequest Triggers
 on: 
-  pull_request:
-    branches:
-      - develop
-      - release
-      - main
   issue_comment:
     types: created
 jobs:
+  # en el contexto del evento comentario no están los datos de la pull request (descripcion y ramas), tendria que obtenerlos usando la api. 
   pr_commented:
     name: PR comment
     if: ${{ github.event.issue.pull_request }} && ${{ github.base_ref }} == 'main'
