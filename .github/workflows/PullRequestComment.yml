@@ -1,5 +1,10 @@
 name: Testing PullRequest Triggers
 on: 
+  pull_request:
+    branches:
+      - develop
+      - release
+      - main
   issue_comment:
     types: created
 jobs:
